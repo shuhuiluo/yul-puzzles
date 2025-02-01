@@ -13,8 +13,12 @@ contract ReadFromDynamicArray {
             // your code here
             // read the value at the `index` in the dynamic array `readMe`
             // and return it
-            // Assume `index` is <= to the length of readMe
+            // Assume `index` is < to the length of readMe
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+            mstore(0, readMe.slot)
+            let arr := keccak256(0, 0x20)
+            mstore(0, sload(add(arr, index)))
+            return(0, 0x20)
         }
     }
 }
