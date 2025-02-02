@@ -28,6 +28,11 @@ contract ReadFromMappingInStruct {
             // within the struct `RandomValues`, read from the mapping `readMe` at `index`
             // and return it
             // Hint: https://www.rareskills.io/post/solidity-dynamic
+            let slot := add(randValues.slot, 2)
+            mstore(0, index)
+            mstore(0x20, slot)
+            mstore(0, sload(keccak256(0, 0x40)))
+            return(0, 0x20)
         }
     }
 }
