@@ -6,6 +6,10 @@ contract ReturnString {
         assembly {
             // your code here
             // return the exact string: `Hello, RareSkills`
+            mstore(0, 0x20)
+            mstore(0x20, 0x11)
+            mstore(0x40, "Hello, RareSkills")
+            return(0, 0x60)
         }
     }
 }
