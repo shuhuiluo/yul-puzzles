@@ -29,6 +29,12 @@ contract AnonymonusEventWithComplexData {
             //          - gender
             //          - name length
             //          - name
+            let string_len := mload(mload(person))
+            let struct_len := and(not(0x1f), add(0xbf, string_len))
+            let data := sub(person, 0x20)
+            mstore(data, 0x20) // offset of dynamic type
+            mstore(person, 0x60) // string length offset
+            log3(data, struct_len, 0, emitter, id)
         }
     }
 }
