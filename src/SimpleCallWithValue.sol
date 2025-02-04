@@ -2,13 +2,14 @@
 pragma solidity ^0.8.13;
 
 contract SimpleCallWithValue {
-
     function main(address t) external payable {
         assembly {
             // your code here
             // call "t.foo()" while sending msg.value
             // hint: "foo()" has function selector 0xc2985578
             // hint: callvalue() returns the value of the current call
-       }
+            mstore(0, 0xc2985578)
+            pop(call(gas(), t, callvalue(), 0x1c, 0x04, 0, 0))
+        }
     }
 }

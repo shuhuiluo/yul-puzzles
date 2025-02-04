@@ -17,7 +17,11 @@ contract TransferFrom {
             // assume that you are already approved to spend "amount"
             // hint: you will need to sload the address of the token
             // hint: transferFrom has function selector 0x23b872dd and signature "transferFrom(address,address,uint256)"
+            mstore(0, 0x23b872dd)
+            mstore(0x20, sload(owner.slot))
+            mstore(0x40, address())
+            mstore(0x60, amount)
+            pop(call(gas(), sload(token.slot), 0, 0x1c, 0x64, 0, 0))
         }
     }
 }
-

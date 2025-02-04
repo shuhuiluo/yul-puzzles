@@ -8,7 +8,10 @@ contract Approve {
             // your code here
             // approve "token" to spend "amount"
             // hint: approve has function selector 0x095ea7b3 and signature "approve(address,uint256)"
-       }
+            mstore(0, 0x095ea7b3)
+            mstore(0x20, token)
+            mstore(0x40, amount)
+            pop(call(gas(), token, 0, 0x1c, 0x44, 0, 0))
+        }
     }
 }
-
