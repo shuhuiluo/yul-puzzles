@@ -4,7 +4,7 @@ pragma solidity ^0.8.13;
 import {Test, console} from "forge-std/Test.sol";
 import {Division} from "../src/Division.sol";
 
-contract DivisonTest is Test {
+contract DivisionTest is Test {
     Division public c;
 
     function setUp() public {

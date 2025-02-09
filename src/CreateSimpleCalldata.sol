@@ -9,6 +9,10 @@ contract CreateSimpleCalldata {
             // return the address of the contract
             // hint: use the `create` opcode
             // hint: use calldatacopy to copy the deploymentBytecode to memory
-       }
+            calldatacopy(0, deploymentBytecode.offset, deploymentBytecode.length)
+            let addr := create(0, 0, deploymentBytecode.length)
+            mstore(0, addr)
+            return(0, 0x20)
+        }
     }
 }

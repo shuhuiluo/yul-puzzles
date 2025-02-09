@@ -2,12 +2,14 @@
 pragma solidity ^0.8.13;
 
 contract SetBit {
-
-  function main(uint256 x, uint8 i) external pure returns (uint256) {
-      assembly {
-          // your code here
-          // set the i-th bit of x to 1, keeping every other bit the same
-          // return the result
-     }
-  }
+    function main(uint256 x, uint8 i) external pure returns (uint256) {
+        assembly {
+            // your code here
+            // set the i-th bit of x to 1, keeping every other bit the same
+            // return the result
+            let mask := shl(i, 1)
+            mstore(0, or(x, mask))
+            return(0, 0x20)
+        }
+    }
 }

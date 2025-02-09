@@ -38,13 +38,28 @@ pragma solidity ^0.8.13;
   This is the one byte that will be installed as the deployed contract’s code. In EVM, 0x00 is the STOP opcode.
 */
 
+contract OneByte {
+    constructor() {
+        assembly {
+            mstore8(0, 0)
+            return(0, 1)
+        }
+    }
+}
+
 contract DeployOneByte {
     function main() external returns (address) {
+        // bytes memory bytecode = type(OneByte).creationCode;
         assembly {
             // your code here
             // create a contract that has a single byte in its code
             // return the address of the contract
             // hint: use the bytecode in the comment above
+            // let addr := create(0, add(bytecode, 0x20), mload(bytecode))
+            mstore(0, hex"600060005360016000f3")
+            let addr := create(0, 0, 10)
+            mstore(0, addr)
+            return(0, 0x20)
         }
     }
 }

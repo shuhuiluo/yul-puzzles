@@ -2,13 +2,15 @@
 pragma solidity ^0.8.13;
 
 contract Division {
-
     function main(int256 x, int256 y) external pure returns (int256) {
         assembly {
             // your code here
             // x and y can be negative or positive
             // return x / y
             // if y == 0 revert
-       }
+            if iszero(y) { revert(0, 0) }
+            mstore(0, sdiv(x, y))
+            return(0, 0x20)
+        }
     }
 }
